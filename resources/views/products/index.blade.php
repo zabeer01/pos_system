@@ -1,16 +1,43 @@
-@extends('layouts.app')
- 
+@extends('master')
+
+
 @section('content')
-    <div class="container">
-        <div class="card">
-            <div class="card-header">products</div>
-            <div class="card-body">
-                {{ $dataTable->table() }}
-            </div>
-        </div>
-    </div>
+
+<style>
+    .product-image {
+    max-width: 100px;
+    max-height: 100px;
+}
+</style>
+
+<div class="container">
+  
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">product_name</th>
+        <th scope="col">product_price</th>
+        <th scope="col">product_img</th>
+    
+        <th scope="col">actions </th>
+      
+      </tr>
+    </thead>
+    <tbody>
+      @foreach($products as $product)
+      <tr>
+          <th scope="row">{{ $product->id }}</th>
+          <td>{{ $product->product_name }}</td>
+          <td>{{ $product->product_price }}</td>
+          <td><img src="{{ $product->product_img }}" class="product-image" alt="Product Image"></td>
+         
+      </tr>
+  @endforeach
+  
+    </tbody>
+  </table>
+</div> <br>
+    
 @endsection
- 
-@push('scripts')
-    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
-@endpush

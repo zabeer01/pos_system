@@ -12,9 +12,11 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(ProductsDataTable $dataTable)
+    public function index()
     {
-        return $dataTable->render('products.index');
+        $products = Product::all();
+        return view('products.index',compact('products'));
+  
     }
 
     /**
